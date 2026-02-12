@@ -61,5 +61,47 @@ if (themeBtn) {
   themeBtn.addEventListener("click", () => {
     const current = document.documentElement.dataset.theme || "dark";
     setTheme(current === "dark" ? "light" : "dark");
+    
+    // Add pulse animation to theme button
+    themeBtn.style.animation = 'pulse 0.3s ease-out';
+    setTimeout(() => {
+      themeBtn.style.animation = '';
+    }, 300);
   });
 }
+
+// Smooth scroll-based section animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+// Initialize animations when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Observe sections for entrance animations
+  const sections = document.querySelectorAll('.section');
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+  
+  // Add pulse animation keyframes
+  const pulseCSS = `
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  `;
+  
+  const style = document.createElement('style');
+  style.textContent = pulseCSS;
+  document.head.appendChild(style);
+});
