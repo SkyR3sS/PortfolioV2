@@ -12,7 +12,7 @@ if (navBtn && navMenu) {
   });
 
   navMenu.addEventListener("click", (e) => {
-    if (e.target.tagName === "A") {
+    if (e.target && e.target.tagName === "A") {
       navMenu.classList.remove("is-open");
       navBtn.setAttribute("aria-expanded", "false");
     }
@@ -20,7 +20,8 @@ if (navBtn && navMenu) {
 }
 
 // Footer year
-document.querySelector("#year").textContent = String(new Date().getFullYear());
+const yearEl = document.querySelector("#year");
+if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 // Contact form -> mailto (no backend)
 const form = document.querySelector("#contactForm");
@@ -28,10 +29,12 @@ if (form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(form);
-    const subject = encodeURIComponent(`Website contact from ${data.get("name")}`);
+
+    const subject = encodeURIComponent(`Website contact from ${data.get("name") || ""}`);
     const body = encodeURIComponent(
-      `Name: ${data.get("name")}\nEmail: ${data.get("email")}\n\nMessage:\n${data.get("message")}`
+      `Name: ${data.get("name") || ""}\nEmail: ${data.get("email") || ""}\n\nMessage:\n${data.get("message") || ""}`
     );
+
     window.location.href = `mailto:dholeyritam@gmail.com?subject=${subject}&body=${body}`;
   });
 }
@@ -46,8 +49,13 @@ function setTheme(mode) {
   if (themeLabel) themeLabel.textContent = mode === "light" ? "Light" : "Dark";
 }
 
+// Default to dark unless saved
 const saved = localStorage.getItem("theme");
-if (saved === "light" || saved === "dark") setTheme(saved);
+if (saved === "light" || saved === "dark") {
+  setTheme(saved);
+} else {
+  setTheme("dark");
+}
 
 if (themeBtn) {
   themeBtn.addEventListener("click", () => {

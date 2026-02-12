@@ -1,4 +1,3 @@
-/* Modern aesthetic: glass + gradients, accessible contrast, responsive grid */
 :root{
   --bg0:#070a14;
   --bg1:#0b1020;
@@ -55,6 +54,7 @@ img{max-width:100%; display:block}
 }
 .skip:focus{left:16px}
 
+/* Header */
 .header{
   position:sticky; top:0; z-index:50;
   backdrop-filter: blur(14px);
@@ -71,6 +71,8 @@ img{max-width:100%; display:block}
 }
 .brand__text{font-size:14px; color:var(--text)}
 
+/* Nav */
+.nav{position:relative}
 .nav__menu{list-style:none; display:flex; gap:18px; padding:0; margin:0; align-items:center}
 .nav__menu a{color:var(--muted); font-weight:700; font-size:14px}
 .nav__menu a:hover{color:var(--text); text-decoration:none}
@@ -87,6 +89,7 @@ img{max-width:100%; display:block}
 .nav__icon::before{top:-6px}
 .nav__icon::after{top:6px}
 
+/* Theme button */
 .theme{
   display:inline-flex; align-items:center; gap:10px;
   padding:10px 12px; border-radius:999px;
@@ -100,13 +103,9 @@ img{max-width:100%; display:block}
 }
 .theme__text{font-size:13px}
 
+/* Hero */
 .hero{padding:64px 0 24px}
-.hero__grid{
-  display:grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap:24px;
-  align-items:start;
-}
+.hero__grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:24px; align-items:start}
 
 .kicker{
   display:inline-flex;
@@ -127,14 +126,8 @@ img{max-width:100%; display:block}
   line-height:1.06;
   letter-spacing:-.02em;
 }
-.grad{
-  background: linear-gradient(90deg, var(--a), var(--b));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
-.grad2{
-  background: linear-gradient(90deg, var(--b), var(--c));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
+.grad{background: linear-gradient(90deg, var(--a), var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.grad2{background: linear-gradient(90deg, var(--b), var(--c)); -webkit-background-clip:text; background-clip:text; color:transparent;}
 
 .lead{margin:0; color:var(--muted); font-size:16px; max-width: 64ch}
 
@@ -170,11 +163,7 @@ img{max-width:100%; display:block}
 }
 .chip:hover{color:var(--text); background:var(--card2)}
 
-.hero__mini{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:10px;
-}
+.hero__mini{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px}
 .mini{
   border:1px solid var(--stroke);
   background:var(--card);
@@ -184,6 +173,7 @@ img{max-width:100%; display:block}
 .mini__k{color:var(--muted); font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:.08em}
 .mini__v{margin-top:6px; font-weight:900; font-size:13px}
 
+/* Card */
 .hero__card .card{
   border-radius: var(--r2);
   border:1px solid color-mix(in srgb, var(--stroke) 85%, white);
@@ -214,7 +204,13 @@ img{max-width:100%; display:block}
 .card__role{color:var(--muted); font-weight:800; font-size:13px}
 
 .card__rows{margin:14px 0; display:grid; gap:10px; position:relative}
-.row{display:flex; justify-content:space-between; gap:12px; padding:10px 12px; border-radius:14px; border:1px solid var(--stroke); background:var(--card)}
+.row{
+  display:flex; justify-content:space-between; gap:12px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid var(--stroke);
+  background:var(--card)
+}
 .row__k{color:var(--muted); font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:.08em}
 .row__v{font-weight:900; font-size:13px}
 .row__v a:hover{text-decoration:none; opacity:.9}
@@ -231,6 +227,7 @@ img{max-width:100%; display:block}
   font-size:12px;
 }
 
+/* Sections */
 .section{padding:44px 0}
 .section__head{margin-bottom:16px}
 .h2{margin:0; font-size:26px; letter-spacing:-.01em}
@@ -240,7 +237,6 @@ img{max-width:100%; display:block}
 
 .grid{display:grid; gap:14px}
 .grid--2{grid-template-columns:1fr 1fr}
-.grid--3{grid-template-columns:1fr 1fr 1fr}
 
 .panel{
   border-radius: var(--r);
@@ -248,7 +244,6 @@ img{max-width:100%; display:block}
   background: var(--card);
   padding:16px;
 }
-
 .list{margin:0; padding-left:18px; color:var(--muted)}
 .list li{margin:8px 0}
 
@@ -262,6 +257,46 @@ img{max-width:100%; display:block}
 .hl__num{font-weight:1000}
 .hl__txt{color:var(--muted); font-weight:800; font-size:13px; margin-top:4px}
 
+/* Skills */
+.skills-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap:16px;
+  margin-top:20px;
+}
+.skill{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:22px 12px;
+  border-radius:20px;
+  border:1px solid var(--stroke);
+  background:var(--card);
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+  text-align:center;
+  font-weight:900;
+  font-size:14px;
+  overflow:hidden;
+}
+.skill img{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  transition: transform .25s ease;
+}
+.skill:hover{
+  transform: translateY(-6px);
+  background:var(--card2);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.25),
+    0 0 26px rgba(124,92,255,.25);
+}
+.skill:hover img{transform: scale(1.1)}
+
+/* Experience */
 .xp{display:grid; gap:14px}
 .xp__card{
   border-radius: var(--r2);
@@ -279,10 +314,15 @@ img{max-width:100%; display:block}
   padding:10px;
 }
 .xp__sub{color:var(--muted); font-weight:800; font-size:13px; margin-top:4px}
-
 .bullets{margin:10px 0 0; padding-left:18px; color:var(--muted)}
 .bullets li{margin:8px 0}
 
+/* PayPal theme swap */
+.logo-dark{display:none}
+html[data-theme="dark"] .logo-light{display:none}
+html[data-theme="dark"] .logo-dark{display:block}
+
+/* Contact */
 .contact{display:grid; gap:10px}
 .contact__item{
   display:flex; justify-content:space-between; gap:12px;
@@ -310,6 +350,7 @@ input:focus,textarea:focus{
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--a) 18%, transparent);
 }
 
+/* Footer */
 .footer{
   margin-top: 20px;
   padding: 20px 0 40px;
@@ -327,15 +368,18 @@ input:focus,textarea:focus{
 }
 .top:hover{background:var(--card2)}
 
+/* Mobile */
 @media (max-width: 980px){
   .hero__grid{grid-template-columns:1fr}
   .hero__mini{grid-template-columns:1fr}
-  .grid--2,.grid--3{grid-template-columns:1fr}
+  .grid--2{grid-template-columns:1fr}
+
   .nav__toggle{display:inline-flex; align-items:center; justify-content:center}
+
   .nav__menu{
     position:absolute;
-    right: 20px;
-    top: 66px;
+    right: 0;
+    top: 56px;
     width: 240px;
     flex-direction: column;
     gap: 12px;
