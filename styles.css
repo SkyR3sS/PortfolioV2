@@ -707,3 +707,11 @@ html[data-theme="dark"] img[src*="aws.svg"] {
 html[data-theme="light"] img[src*="aws.svg"] {
   filter: none;
 }
+
+html[data-theme="dark"] img[src*="infosys.svg"] {
+  filter: invert(1) brightness(1);
+}
+
+html[data-theme="light"] img[src*="infosys.svg"] {
+  filter: none;
+}
